@@ -23,16 +23,20 @@ st.write("Life expectancy has been increasing for many years. It indicates that 
 
 # do line graph for life expectancy
 
-# do predicition
+# do predicition (LATER: for 3 gapminder indicators? on second website?)
 
 # text for prediction
 
 
 '''Selection of further indicators'''
-# Multiselect widget for selecting indicators #QUESTION: how many indicators should they be allowed to track? how compatible are indicators?
-countries = st.multiselect('Select Countries', df['value'].unique())
+# Search for an indicator by topic
+# todo
 
-# Multiselect widget for selecting countries
+# Multiselect widget for selecting indicators
+countries = st.multiselect('Select one Indicator', df['value'].unique())
+# LATER: compare Indicators --> for special charts?
+
+# Multiselect widget for selecting countries or world
 countries = st.multiselect('Select Countries', df['country'].unique())
 
 '''
@@ -54,7 +58,7 @@ filtered_df = df[(df['value'] == str(value)) & (df['country'].isin(countries))]
 df_for_plot = filtered_df.copy()
 
 # Check if there are selected countries
-if len(countries) > 0:
+if len(indicators) > 0:
     # Create line chart
     
     # Customize the chart layout
@@ -63,7 +67,7 @@ if len(countries) > 0:
     st.plotly_chart()
 else:
     # Display a message if no countries are selected
-    st.write('Please select one or more countries.')
+    st.write('Please select one or more indicators.')
 
 
 #Explanation why it's getting better
@@ -75,6 +79,7 @@ else:
 #See data
 filtered_df
 
+#More interesting charts (combined dashboards)?
 
 #spread the word
 # api to automatically create posts
