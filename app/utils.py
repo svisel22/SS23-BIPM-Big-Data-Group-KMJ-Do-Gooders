@@ -1,5 +1,6 @@
 import pandas as pd
 import requests
+from statsmodels.tsa.stattools import adfuller
 
 def get_data(id_indicator, countries):
 
@@ -39,3 +40,14 @@ def get_data(id_indicator, countries):
 
 
     return(df_complete)
+
+
+def ad_test(df):
+    dftest = adfuller(df, autolag='AIC')
+    print('ADF: ', dftest[0])
+    print('p-value: ', dftest[1])
+    print('Number of Lags:', dftest[2])
+    print('Number of Observations used:', dftest[3])
+    print('critical Values:', dftest[4])
+    for key, value in dftest[4].items():
+        print("\t", key, ": ", value)
