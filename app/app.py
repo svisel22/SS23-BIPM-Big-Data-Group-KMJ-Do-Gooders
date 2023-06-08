@@ -33,7 +33,7 @@ st.write("Life expectancy has been increasing for many years. It indicates that 
 # todo
 
 # Multiselect widget for selecting indicators
-countries = st.multiselect('Select one Indicator', df['value'].unique())
+indicator = st.multiselect('Select one Indicator', df['value'].unique())
 # LATER: compare Indicators --> for special charts?
 
 # Multiselect widget for selecting countries or world
