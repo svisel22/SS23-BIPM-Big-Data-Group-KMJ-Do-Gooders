@@ -17,8 +17,24 @@ st.write("Group KMJ Do-Gooders proudly presents: Happy Graphs. Graphs which make
 # Read the worldinidicators dataframe
 #df = data_processing()
 
-'''Life Expectancy / Prediction'''
+'''Life Expectancy'''
 st.write("Life expectancy has been increasing for many years. It indicates that our world is still progressing and better off, than we might sometimes think. We invite you to explore more happy charts.")
+'''Prediction with given features'''
+# features
+
+# presettings?
+
+# filter the df for life expectancy
+
+# do line graph for life expectancy
+
+# do predicition (LATER: for 3 gapminder indicators? on second website?)
+
+# text for prediction
+
+'''Prediction with own features'''
+# features
+
 # filter the df for life expectancy
 
 # do line graph for life expectancy
