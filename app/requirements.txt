@@ -1,6 +1,10 @@
 streamlit
 pandas
 requests
+plotly.express
+matplotlib.pyplot
+pickle
+utils
 openai
 json
 statsmodels.tsa.stattools

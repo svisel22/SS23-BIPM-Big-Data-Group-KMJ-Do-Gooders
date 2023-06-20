@@ -16,7 +16,7 @@ st.write("Group KMJ Do-Gooders proudly presents: Happy Graphs - Graphs which mak
 
 '''Preparation'''
 # Read the worldindicators dataframe
-df = #ACTION
+#df = #ACTION
 
 
 '''Life Expectancy'''
