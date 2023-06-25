@@ -21,15 +21,18 @@ st.write("Group KMJ Do-Gooders proudly presents: Happy Graphs - Graphs which mak
 '''Selection of further indicators for line charts'''
 #ACTION: Search for an indicator by topic?
 
-# Get the list of available indicators and countries
-available_indicators = df.columns.tolist()[1:]
-available_countries = df.columns.tolist()[1:]
-
-# User selection
+# Get the list of available indicators and countries and user selection
+df = pd.read_csv('world_bank_data_clean_v2.csv')
+available_indicators = df['indicator_name'].drop_duplicates().reset_index(drop=True)
 selected_indicator = st.selectbox("Select an indicator", available_indicators)
-selected_countries = st.multiselect("Select countries", available_countries) #ACTION: make worldwide as a default
-selected_year_range = st.slider("Select a year range", min_value=df['Year'].min(), max_value=df['Year'].max(),
-                                value=(df['Year'].min(), df['Year'].max()), step=10)
+
+df_indicator= df[df['indicator_name']==selected_indicator]
+available_countries = df_indicator['country'].drop_duplicates().reset_index(drop=True)
+selected_countries = st.multiselect("Select countries", available_countries, default=['World','Germany','Mexico']) #ACTION: make worldwide as a default
+
+min_year = int(df_indicator['date'].min())
+max_year = int(df_indicator['date'].max())
+selected_year_range = st.slider("Select a year range", min_value=min_year, max_value=max_year, value=(1990,max_year))
 selected_start_year, selected_end_year = selected_year_range
 
 # Check if an indicator is selected
