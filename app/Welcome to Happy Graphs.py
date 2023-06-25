@@ -18,12 +18,11 @@ st.title('Happy Graphs')
 st.write("Group KMJ Do-Gooders proudly presents: Happy Graphs - Graphs which make us optimistic.")
 
 
-#'''Preparation'''
+### Preparation
 # Read the worldindicators dataframe
 #df = #ACTION
 
-
-#'''Life Expectancy'''
+### Life Expectancy
 intro_text = """
 Increasing life expectancy is often regarded as a measure of societal progress. It reflects advancements in public health, education, technology, and social development. It indicates that societies are investing in improving the well-being of their citizens and addressing societal challenges.
 
@@ -33,12 +32,23 @@ Sidenote: Please don't get fooled by the decline of life expectancy since 2019. 
 """
 st.markdown(intro_text, unsafe_allow_html=True)
 
-'''Show life expectancy world wide compared to German & Mexican'''
+### Show life expectancy world wide compared to German & Mexican
 # User selection
-df= pd.read_csv('world_bank_data_clean_v2.csv')
-life_expect_countries = df.columns.tolist()[1:]
-st.write("Choose the countries you are interested in. The default countries are Mexico and Germany:")
-selected_countries = st.multiselect("Select countries", life_expect_countries, default=['Mexico', 'Germany'])
+#ACTION: Search for an indicator by topic?
+
+# Get the list of available indicators and countries and user selection
+df = pd.read_csv('world_bank_data_clean_v2.csv')
+available_indicators = df['indicator_name'].drop_duplicates().reset_index(drop=True)
+selected_indicator = st.selectbox("Select an indicator", available_indicators)
+
+df_indicator= df[df['indicator_name']==selected_indicator]
+available_countries = df_indicator['country'].drop_duplicates().reset_index(drop=True)
+selected_countries = st.multiselect("Select countries", available_countries, default=['World','Germany','Mexico']) #ACTION: make worldwide as a default
+
+min_year = int(df_indicator['date'].min())
+max_year = int(df_indicator['date'].max())
+selected_year_range = st.slider("Select a year range", min_value=min_year, max_value=max_year, value=(1990,max_year))
+selected_start_year, selected_end_year = selected_year_range
 
 # Set the chart title and axis labels
 chart_title = "Life Expectancy"
@@ -87,7 +97,7 @@ st.pyplot(fig)
 
 
 
-'''Prediction with given features'''
+### Prediction with given features
 #QUESTION: at the moment it's india, maybe rather have Germany? Or having sth like: Are you Mr Müller and then having presettings that should be near to him or also have the presettings for us three
 st.write("Choose the country you life in to see your life expectancy:") #ACITON: adapt
 #QUESTION: What kind of input do we need? Dropdowns or fields to write in?
@@ -126,7 +136,7 @@ life_expect_df_pred = loaded_model.predict(life_expect_df_test)
 st.write("Your predicted life expectancy is ", life_expect_df_pred[0], "years.")
 
 
-'''Prediction with own features'''
+### Prediction with own features
 st.write("Now it's your turn!  Below you can predict the life expectancy for a fictive country that has the features you select. Feel free to play around and find out what has which impact on life expectancy:") 
 #ACTION: make to input
 access_to_electricity = 100
