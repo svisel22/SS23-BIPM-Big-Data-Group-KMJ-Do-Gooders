@@ -2,13 +2,12 @@ import streamlit as st
 #hints for debugging: https://awesome-streamlit.readthedocs.io/en/latest/vscode.html
 #import plotly.express as px
 import pandas as pd
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 #import pickle
 import requests
 #import openai
 from utils import get_data, get_indicator_reason, filter_projects
-
-
+#import plotly.graph_objects as go
 
 #with open('../pred_lifeexp.pkl', 'rb') as file:
 #    loaded_model = pickle.load(file)
@@ -40,8 +39,10 @@ if not selected_indicator:
     st.text("Please choose an indicator to see its development.")
 else:
     # Filter the data for selected countries and time period
-    filtered_data = df[['Year'] + selected_countries]
-    filtered_data = filtered_data[(filtered_data['Year'] >= selected_start_year) & (filtered_data['Year'] <= selected_end_year)]
+    filtered_data = df_indicator[['date','country','value']]
+    filtered_data = filtered_data[(filtered_data['date'] >= selected_start_year) & (filtered_data['date'] <= selected_end_year) & (df['country'].isin(selected_countries))]
+
+    st.dataframe(filtered_data)
 
     # Create a new figure and set the chart properties
     fig, ax = plt.subplots()
