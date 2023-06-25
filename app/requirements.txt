@@ -3,11 +3,6 @@ pandas
 requests
 plotly
 matplotlib
-pickle
 utils
 openai
-json
-statsmodels.tsa.stattools
-sklearn.model_selection 
-sklearn.metrics
-sklearn.linear_model
+scikit-learn

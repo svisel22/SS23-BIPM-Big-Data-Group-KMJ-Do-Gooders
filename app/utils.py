@@ -1,8 +1,8 @@
 import pandas as pd
 import requests
-import openai
+#import openai
 import json
-from statsmodels.tsa.stattools import adfuller
+#from statsmodels.tsa.stattools import adfuller
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 from sklearn.linear_model import Ridge
