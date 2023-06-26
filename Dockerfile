@@ -18,4 +18,4 @@ COPY app/ /app
 EXPOSE 8501
 
 # Run app.py when the container launches
-ENTRYPOINT ["streamlit", "run", "Welcome to Happy Graphs.py", "--server.port=8501", "--server.address=0.0.0.0"]
+ENTRYPOINT ["streamlit", "run", "Welcome_to_Happy_Graphs.py", "--server.port=8501", "--server.address=0.0.0.0"]
